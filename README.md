@@ -8,6 +8,10 @@
 * **3.x** - Project code for the third section of the course where **x** indicates the video number where it was implemented
 
 ---
+#### Related Video
+https://youtu.be/MOsolLaVnsI
+
+---
 #### Course Playlist
 https://www.youtube.com/watch?v=sVbEyFZKgqk&list=PLr3d3QYzkw2xabQRUpcZ_IBk9W50M9pe-
 
