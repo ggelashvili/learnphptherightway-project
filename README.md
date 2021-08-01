@@ -35,3 +35,4 @@ I have provided you with the skeleton of code that you can work with, it is what
    * The date of the transaction should be in this format "Jan 4, 2021"
    * Show income amounts in green color & show expense amounts in red
 9. Submit the PR with your changes, I will review & provide feedback, if you get stuck or have any questions let me know.
+10. **Bonus:** Allow multiple file uploads so that more than one CSV file can be uploaded at the same time.
