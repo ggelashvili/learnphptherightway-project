@@ -2,22 +2,26 @@
 
 declare(strict_types = 1);
 
-$root = dirname(__DIR__) . DIRECTORY_SEPARATOR;
+use App\App;
+use App\Config;
+use App\Controllers\HomeController;
+use App\Router;
 
-define('APP_PATH', $root . 'app' . DIRECTORY_SEPARATOR);
-define('FILES_PATH', $root . 'transaction_files' . DIRECTORY_SEPARATOR);
-define('VIEWS_PATH', $root . 'views' . DIRECTORY_SEPARATOR);
+require_once __DIR__ . '/../vendor/autoload.php';
 
-require APP_PATH . "App.php";
-require APP_PATH . 'helpers.php';
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
 
-$files = getTransactionFiles(FILES_PATH);
+define('STORAGE_PATH', __DIR__ . '/../storage');
+define('VIEW_PATH', __DIR__ . '/../views');
 
-$transactions = [];
-foreach($files as $file) {
-    $transactions = array_merge($transactions, getTransactions($file, 'extractTransaction'));
-}
+$router = new Router();
 
-$totals = calculateTotals($transactions);
+$router
+    ->get('/', [HomeController::class, 'index']);
 
-require VIEWS_PATH . 'transactions.php';
+(new App(
+    $router,
+    ['uri' => $_SERVER['REQUEST_URI'], 'method' => $_SERVER['REQUEST_METHOD']],
+    new Config($_ENV)
+))->run();

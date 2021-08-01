@@ -2,71 +2,32 @@
 
 declare(strict_types = 1);
 
-function getTransactionFiles(string $dirPath): array
+namespace App;
+
+use App\Exceptions\RouteNotFoundException;
+
+class App
 {
-    $files = [];
+    private static DB $db;
 
-    foreach (scandir($dirPath) as $file) {
-        if (is_dir($file)) {
-            continue;
-        }
-
-        $files[] = $dirPath . $file;
+    public function __construct(protected Router $router, protected array $request, protected Config $config)
+    {
+        static::$db = new DB($config->db ?? []);
     }
 
-    return $files;
-}
-
-function getTransactions(string $fileName, ?callable $transactionHandler = null): array
-{
-    if (! file_exists($fileName)) {
-        trigger_error('File "' . $fileName . '" does not exist.', E_USER_ERROR);
+    public static function db(): DB
+    {
+        return static::$db;
     }
 
-    $file = fopen($fileName, 'r');
+    public function run()
+    {
+        try {
+            echo $this->router->resolve($this->request['uri'], strtolower($this->request['method']));
+        } catch (RouteNotFoundException) {
+            http_response_code(404);
 
-    fgetcsv($file);
-
-    $transactions = [];
-
-    while (($transaction = fgetcsv($file)) !== false) {
-        if ($transactionHandler !== null) {
-            $transaction = $transactionHandler($transaction);
-        }
-
-        $transactions[] = $transaction;
-    }
-
-    return $transactions;
-}
-
-function extractTransaction(array $transactionRow): array
-{
-    [$date, $checkNumber, $description, $amount] = $transactionRow;
-
-    $amount = (float) str_replace(['$', ','], '', $amount);
-
-    return [
-        'date'        => $date,
-        'checkNumber' => $checkNumber,
-        'description' => $description,
-        'amount'      => $amount,
-    ];
-}
-
-function calculateTotals(array $transactions): array
-{
-    $totals = ['netTotal' => 0, 'totalIncome' => 0, 'totalExpense' => 0];
-
-    foreach ($transactions as $transaction) {
-        $totals['netTotal'] += $transaction['amount'];
-
-        if ($transaction['amount'] >= 0) {
-            $totals['totalIncome'] += $transaction['amount'];
-        } else {
-            $totals['totalExpense'] += $transaction['amount'];
+            echo View::make('error/404');
         }
     }
-
-    return $totals;
 }

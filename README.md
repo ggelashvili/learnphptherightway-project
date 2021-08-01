@@ -1,41 +1,37 @@
-#### The project for the PHP course "Learn PHP The Right Way".
-
---- 
-#### Branches
-* **main** - Will contain the finished project code, if you are following a specific lesson then you should switch to the appropriate branch to follow along
-* **1.x** - Project code for the first section of the course where **x** indicates the video number where it was implemented
-* **2.x** - Project code for the second section of the course where **x** indicates the video number where it was implemented
-* **3.x** - Project code for the third section of the course where **x** indicates the video number where it was implemented
+#### The exercise for the PHP course "Learn PHP The Right Way" lesson 2.32.
 
 ---
 #### Related Video
-https://youtu.be/MOsolLaVnsI
+
 
 ---
 #### Course Playlist
 https://www.youtube.com/watch?v=sVbEyFZKgqk&list=PLr3d3QYzkw2xabQRUpcZ_IBk9W50M9pe-
 
 ---
+#### Summary
+At the end of the section 1 of the course we did a mini project & exercise where we built a transaction file importer. We did it procedural way & also read the files from directory instead of letting user upload them. This exercise is for you to implement the same thing but use OOP as well as database to store the imported transactions & then display them on the screen like this:
+![Sample Output](result.png)
+
+I have provided you with the skeleton of code that you can work with, it is what we already covered in the second section of the course (in the last few lessons). You can refer to [this video](https://youtu.be/iCKzIIE4w5E) to understand the structure of the code. Note that you can write the whole thing on your own & don't use this structure at all, the goal is to simply accept a file upload of transactions, save them in transactions table & color code expense/income when displaying the transactions table. You can look at the code that I wrote & explained in [this video](https://youtu.be/MOsolLaVnsI) & convert it into OOP if you wish.
+
+---
 #### Instructions
-1. Set document root to _YOUR_PROJECT/public_, that way the site is loaded from _public/index.php_
-   * You should include/require all other files in _index.php_, that's your main file
-   * You can use APP_PATH, FILES_PATH & VIEWS_PATH constants that are defined in _index.php_ to help you with including files
-2. Main code should go in app directory in any file that you choose, I created empty App.php that you can use to place your main logic but feel free to change it
-   * You should define multiple functions there which will read **all** files within _transaction_files_ directory and process them. It is up to you how you want to read those files, but the goal is to read all files within that directory
-   * You can assume that all files within _transaction_files_ directory are **.csv** files
-   * One sample file is provided which contains formatted data
-   * You can assume that all files in _transaction_files_ directory will be of same format for now
-3. Store data in memory (in an array)
+1. Clone this repository to your local or download it.
+2. If you are using docker you can `cd` into the docker directory & run `docker-compose up -d`. If you are using something else like XAMPP just make sure you have Web Server (Apache), PHP & MySQL running.
+   * Please note that **PHP 8** is required if you want to use the skeleton that I am providing. You will need to adjust the code to make it work for lower PHP versions.
+3. Create a `.env` file by copying variables from `.env.example`. Fill in those values in `.env` file.
+4. Make sure that whatever database name you enter actually exists, if not, create that database.
+5. Confirm that once you open your `http://localhost:8000` it loads the home page.
+6. Create a new route & controller that will let you upload the transactions CSV file. The UI is not important, so you don't even need any CSS. If you want you can use `HomeController` and simply add a new method and route for it or create a new controller entirely.
+7. Your controller should accept the uploaded file, read it line by line & save the data into the **transactions** table. You can download the sample transactions file to upload [here](https://raw.githubusercontent.com/ggelashvili/learnphptherightway-project/1.32/transaction_files/sample_1.csv)
+   * Create the **transactions** table with appropriate columns to store the data
+   * Create a model within the **Models** directory to actually process the file & save data into the database
    * First column is the date of the transaction
    * Second column is the check # which is optional & is not always provided
    * The third column is transaction description
-   * The fourth column is the amount (negative number indicates it's an expense, positive number indicates it's an income)
-4. Calculate the total income, total expense & net total (total income - total expense)
-5. Print a simple HTML table containing all the data from the files
-   * The html skeleton is provided in views/transactions.php file
+   * The fourth column is the amount (negative number indicates it's an expense, positive number indicates it's an income), it's up to you how you want to store it
+8. The view file is provided for you under `views/transactions.php` you just need to render this from your controller & pass down the necessary data to display transactions.
    * The date of the transaction should be in this format "Jan 4, 2021"
    * Show income amounts in green color & show expense amounts in red
-
-Here is an example of what the table should look like
-
-![Sample Output](result.png)
+9. Submit the PR with your changes, I will review & provide feedback, if you get stuck or have any questions let me know.
