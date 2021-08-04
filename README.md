@@ -20,7 +20,7 @@ I have provided you with the skeleton of code that you can work with, it is what
 4. Make sure that whatever database name you enter actually exists, if not, create that database.
 5. Confirm that once you open your `http://localhost:8000` it loads the home page.
 6. Create a new route & controller that will let you upload the transactions CSV file. The UI is not important, so you don't even need any CSS. If you want you can use `HomeController` and simply add a new method and route for it or create a new controller entirely.
-7. Your controller should accept the uploaded file, read it line by line & save the data into the **transactions** table. You can download the sample transactions file to upload [here](https://raw.githubusercontent.com/ggelashvili/learnphptherightway-project/1.32/transaction_files/sample_1.csv)
+7. Your controller should accept the uploaded file, read it line by line & save the data into the **transactions** table. You can download the sample transactions file to upload [here](./transactions_sample.csv)
    * Create the **transactions** table with appropriate columns to store the data
    * Create a model within the **Models** directory to actually process the file & save data into the database
    * First column is the date of the transaction
