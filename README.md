@@ -1,4 +1,4 @@
-#### The exercise for the PHP course "Learn PHP The Right Way" lesson 2.32.
+#### The exercise for the PHP course "Learn PHP The Right Way" lesson 2.33.
 
 ---
 #### Course Playlist
