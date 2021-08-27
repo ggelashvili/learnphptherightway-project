@@ -1,6 +1,6 @@
 #### The source code for the PHP series "Learn PHP The Right Way".
 
-This repository will contain the code related to specific lessons/videos separated by branches. If watched lesson 1.31 then you should switch to branch 1.31 to find the appropriate code for it. Each lesson that has an exercise or a mini project or some sort of related code will be available in the branch named after the lesson number.
+This repository will contain the code related to specific lessons/videos separated by branches. For example, if you watched lesson 1.31 then you should switch to branch 1.31 to find the appropriate code for it. Each lesson that has an exercise or a mini project or some sort of related code, it will be available in the branch named after the lesson number.
 
 --- 
 #### Branches
