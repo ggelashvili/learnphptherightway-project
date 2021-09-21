@@ -1,4 +1,4 @@
-#### The source code for the PHP course "Learn PHP The Right Way" lesson 3.1.
+#### The source code for the PHP course "Learn PHP The Right Way" lesson 3.2.
 
 ---
 #### Course Playlist
