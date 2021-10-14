@@ -3,13 +3,13 @@ version: '3.8'
 services:
   app:
     build:
-      context: ""
+      context: ./
       dockerfile: Dockerfile
     container_name: programwithgio-app
     restart: always
     working_dir: /var/www/
     volumes:
-      - ../:/var/www
+      - ../src:/var/www
   nginx:
     image: nginx:1.19-alpine
     container_name: programwithgio-nginx
@@ -17,15 +17,5 @@ services:
     ports:
       - 8000:80
     volumes:
-      - ../:/var/www
+      - ../src:/var/www
       - ./nginx:/etc/nginx/conf.d
-  db:
-    container_name: programwithgio-db
-    image: mysql:8.0
-    volumes:
-      - ./storage/mysql:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - 3306:3306
