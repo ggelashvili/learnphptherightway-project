@@ -5,6 +5,7 @@ declare(strict_types = 1);
 use App\App;
 use App\Config;
 use App\Container;
+use App\Controllers\GeneratorExampleController;
 use App\Controllers\HomeController;
 use App\Router;
 
@@ -20,7 +21,8 @@ $container = new Container();
 $router    = new Router($container);
 
 $router
-    ->get('/', [HomeController::class, 'index']);
+    ->get('/', [HomeController::class, 'index'])
+    ->get('/examples/generator', [GeneratorExampleController::class, 'index']);
 
 (new App(
     $container,
