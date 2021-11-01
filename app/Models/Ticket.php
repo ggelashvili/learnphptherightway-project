@@ -5,16 +5,17 @@ declare(strict_types = 1);
 namespace App\Models;
 
 use App\Model;
+use Generator;
 
 class Ticket extends Model
 {
-    public function all(): array
+    public function all(): Generator
     {
         $stmt = $this->db->query(
-            'SELECT *
+            'SELECT id, title, content
              FROM tickets'
         );
 
-        return $stmt->fetchAll();
+        return $this->fetchLazy($stmt);
     }
 }
