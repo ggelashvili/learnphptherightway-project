@@ -1,6 +1,6 @@
-#### The source code for the PHP course "Learn PHP The Right Way" lesson 3.4.
+#### The source code for the PHP course "Learn PHP The Right Way" lesson 3.6.
 
-https://youtu.be/78Vpg97rQwE
+https://youtu.be/xH3snMmgDWg
 
 ---
 #### Course Playlist
