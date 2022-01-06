@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use App\App;
 use App\Config;
@@ -20,7 +20,8 @@ $router = new Router();
 
 $router
     ->get('/', [HomeController::class, 'index'])
-    ->get('/transactions', [TransactionsController::class, 'index']);
+    ->get('/transactions', [TransactionsController::class, 'index'])
+    ->post('/transactions', [TransactionsController::class, 'upload']);
 
 (new App(
     $router,

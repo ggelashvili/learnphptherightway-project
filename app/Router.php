@@ -32,7 +32,7 @@ class Router
         return $this->routes;
     }
 
-    public function resolve(string $requestUri, string $requestMethod)
+    public function resolve(string $requestUri, string $requestMethod,)
     {
         $route = explode('?', $requestUri)[0];
         $action = $this->routes[$requestMethod][$route] ?? null;
