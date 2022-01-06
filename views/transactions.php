@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Transactions</title>
         <style>
@@ -35,6 +35,15 @@
             </thead>
             <tbody>
                 <!-- TODO -->
+                <?php /** @noinspection PhpUndefinedVariableInspection */
+                foreach($transactions as $key => $transaction): ?>
+                    <tr>
+                        <td><?= $transaction['date']?></td>
+                        <td><?= $transaction['check #']?></td>
+                        <td><?= $transaction['description']?></td>
+                        <td><?= $transaction['amount']?></td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
