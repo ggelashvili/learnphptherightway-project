@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App;
 
+use App\Exceptions\FileUploadException;
 use App\Exceptions\RouteNotFoundException;
 
 class App
@@ -28,6 +29,10 @@ class App
             http_response_code(404);
 
             echo View::make('error/404');
+        } catch (FileUploadException $exception) {
+            http_response_code(415);
+
+            echo View::make('error/415', ['message' => $exception->getMessage()]);
         }
     }
 }

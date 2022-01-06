@@ -32,9 +32,13 @@ class TransactionsController
             throw new FileUploadException('File not Found');
         }
 
-        if (!$_FILES['table']['type'] == 'application/vnd.ms-excel') {
+        if ($_FILES['table']['type'] !== 'application/vnd.ms-excel') {
             throw new FileUploadException('Wrong filetype. We need .csv');
         }
+
+        echo '<pre>';
+        var_dump($_FILES);
+        echo '</pre>';
 
         $transactionModel = new TransactionModel();
 
