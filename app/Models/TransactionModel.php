@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Model;
@@ -21,7 +23,7 @@ class TransactionModel extends Model
         $statement->execute();
         $row = $statement->fetch();
 
-        return $row['totalIncome'] ?? 0;
+        return (float) $row['totalIncome'] ?? 0;
     }
 
     public function getTotalExpense(): float
@@ -31,7 +33,7 @@ class TransactionModel extends Model
         $statement->execute();
         $row = $statement->fetch();
 
-        return $row['totalExpense'] ?? 0;
+        return (float) $row['totalExpense'] ?? 0;
     }
 
     public function getNetTotal(): float
@@ -41,7 +43,7 @@ class TransactionModel extends Model
         $statement->execute();
         $row = $statement->fetch();
 
-        return $row['netTotal'] ?? 0;
+        return (float) $row['netTotal'] ?? 0;
     }
 
     public function create(string $date, ?int $checkNumber, string $description, float $amount)
