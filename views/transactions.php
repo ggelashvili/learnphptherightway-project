@@ -36,25 +36,27 @@
     <tbody>
     <?php foreach ($transactions as $key => $transaction): ?>
         <tr>
-            <td><?= $transaction['date'] ?></td>
-            <td><?= $transaction['check #'] ?></td>
-            <td><?= $transaction['description'] ?></td>
-            <td><?= $transaction['amount'] ?></td>
+            <td><?= htmlspecialchars($transaction['date']) ?></td>
+            <td><?= htmlspecialchars($transaction['check #']) ?></td>
+            <td><?= htmlspecialchars($transaction['description']) ?></td>
+            <td style="color: <?= $transaction['amount'] > 0 ? 'green' : 'red' ?>">
+                <?= htmlspecialchars($transaction['amount']) ?>
+            </td>
         </tr>
     <?php endforeach; ?>
     </tbody>
     <tfoot>
     <tr>
         <th colspan="3">Total Income:</th>
-        <td><?= $total['totalIncome'] ?></td>
+        <td><?= htmlspecialchars($total['totalIncome']) ?></td>
     </tr>
     <tr>
         <th colspan="3">Total Expense:</th>
-        <td><?= $total['totalExpense'] ?></td>
+        <td><?= htmlspecialchars($total['totalExpense']) ?></td>
     </tr>
     <tr>
         <th colspan="3">Net Total:</th>
-        <td><?= $total['netTotal'] ?></td>
+        <td><?= htmlspecialchars($total['netTotal']) ?></td>
     </tr>
     </tfoot>
 </table>

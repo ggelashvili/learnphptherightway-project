@@ -10,7 +10,7 @@
 <body>
     <h1>415 ERROR</h1>
 
-    <?= $message ?>
+    <?= htmlspecialchars($message) ?>
 
 </body>
 </html>
