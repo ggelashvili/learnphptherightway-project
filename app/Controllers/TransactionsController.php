@@ -36,10 +36,6 @@ class TransactionsController
             throw new FileUploadException('Wrong filetype. We need .csv');
         }
 
-        echo '<pre>';
-        var_dump($_FILES);
-        echo '</pre>';
-
         $transactionModel = new TransactionModel();
 
         $file = fopen($_FILES['table']['tmp_name'], 'r');
