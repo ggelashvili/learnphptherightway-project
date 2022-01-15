@@ -28,6 +28,7 @@ class DB
                 $config['options'] ?? $defaultOptions
             );
         } catch (\PDOException $e) {
+            phpinfo();
             throw new \PDOException($e->getMessage(), (int) $e->getCode());
         }
     }
