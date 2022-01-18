@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Controllers;
 
+use App\Attributes\Route;
 use App\Models\Ticket;
 use Generator;
 
@@ -13,6 +14,7 @@ class GeneratorExampleController
     {
     }
 
+    #[Route('/examples/generator')]
     public function index()
     {
         $tickets = $this->ticketModel->all();
