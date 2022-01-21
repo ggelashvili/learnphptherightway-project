@@ -10,6 +10,6 @@ class HomeController
 {
     public function index(): View
     {
-        return View::make('index');
+        return View::make('index', ["layout" => "defaultLayout"]);
     }
 }

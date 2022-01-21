@@ -35,7 +35,18 @@ class View
 
         include $viewPath;
 
-        return (string) ob_get_clean();
+        $content = (string) ob_get_clean();
+
+        
+        if (isset($layout)) {
+          ob_start();
+          include VIEW_PATH . '/layouts/' . $layout . '.php'; 
+          $layout = (string) ob_get_clean();
+
+          return str_replace('{{contentPlaceholder}}', $content, $layout);
+        } else {
+          return $content;
+        }
     }
 
     public function __toString(): string
