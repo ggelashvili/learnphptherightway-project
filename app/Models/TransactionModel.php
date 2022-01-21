@@ -184,4 +184,4 @@ class TransactionModel extends Model
 
       return round($netTotal, 2);
     }
-} 
+}
