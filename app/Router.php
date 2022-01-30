@@ -26,7 +26,7 @@ class Router
                 foreach($attributes as $attribute) {
                     $route = $attribute->newInstance();
 
-                    $this->register($route->method, $route->routePath, [$controller, $method->getName()]);
+                    $this->register($route->method->value, $route->routePath, [$controller, $method->getName()]);
                 }
             }
         }
