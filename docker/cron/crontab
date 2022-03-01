@@ -1,0 +1,1 @@
+*/2 * * * * php /var/www/scripts/email.php >> /var/log/cron/cron.log 2>&1

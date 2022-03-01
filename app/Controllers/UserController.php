@@ -6,16 +6,12 @@ namespace App\Controllers;
 
 use App\Attributes\Get;
 use App\Attributes\Post;
+use App\Models\Email;
 use App\View;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 
 class UserController
 {
-    public function __construct(protected MailerInterface $mailer)
-    {
-    }
-
     #[Get('/users/create')]
     public function create(): View
     {
@@ -42,14 +38,12 @@ Hello $firstName,
 Thank you for signing up!
 HTMLBody;
 
-        $email = (new Email())
-            ->from('support@example.com')
-            ->to($email)
-            ->subject('Welcome!')
-            ->attach('Hello World!', 'welcome.txt')
-            ->text($text)
-            ->html($html);
-
-        $this->mailer->send($email);
+        (new Email())->queue(
+            new Address($email),
+            new Address('support@example.com', 'Support'),
+            'Welcome!',
+            $html,
+            $text
+        );
     }
 }
