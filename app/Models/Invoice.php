@@ -12,14 +12,10 @@ class Invoice extends Model
 {
     public function all(InvoiceStatus $status): array
     {
-        $stmt = $this->db->prepare(
-            'SELECT id, invoice_number, amount, status
-             FROM invoices
-             WHERE status = ?'
-        );
-
-        $stmt->execute([$status->value]);
-
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $this->db->createQueryBuilder()->select('id', 'invoice_number', 'amount', 'status')
+            ->from('invoices')
+            ->where('status = ?')
+            ->setParameter(0, $status->value)
+            ->fetchAllAssociative();
     }
 }

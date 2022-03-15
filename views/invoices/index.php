@@ -37,10 +37,10 @@
     <tbody>
         <?php foreach ($invoices as $invoice): ?>
             <tr>
-                <td><?= $invoice->invoice_number ?></td>
-                <td>$<?= number_format($invoice->amount, 2) ?></td>
-                <td class="<?= \App\Enums\InvoiceStatus::tryFrom($invoice->status)->color()->getClass() ?>">
-                    <?= \App\Enums\InvoiceStatus::tryFrom($invoice->status)->toString() ?>
+                <td><?= $invoice['invoice_number'] ?></td>
+                <td>$<?= number_format($invoice['amount'], 2) ?></td>
+                <td class="<?= \App\Enums\InvoiceStatus::tryFrom($invoice['status'])->color()->getClass() ?>">
+                    <?= \App\Enums\InvoiceStatus::tryFrom($invoice['status'])->toString() ?>
                 </td>
             </tr>
         <?php endforeach ?>
