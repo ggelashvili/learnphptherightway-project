@@ -30,6 +30,15 @@ class Invoice extends Model
         'status'     => InvoiceStatus::class,
     ];
 
+    protected static function booted()
+    {
+        static::creating(function(Invoice $invoice) {
+            if ($invoice->isClean('due_date')) {
+                $invoice->due_date = (new Carbon())->addDays(10);
+            }
+        });
+    }
+
     public function items(): HasMany
     {
         return $this->hasMany(InvoiceItem::class);
