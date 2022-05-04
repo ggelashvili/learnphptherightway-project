@@ -3,11 +3,10 @@
 declare(strict_types = 1);
 
 use App\App;
-use App\Container;
 use App\Controllers\HomeController;
 use App\Controllers\InvoiceController;
-use App\Controllers\UserController;
 use App\Router;
+use Illuminate\Container\Container;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -21,7 +20,6 @@ $router->registerRoutesFromControllerAttributes(
     [
         HomeController::class,
         InvoiceController::class,
-        UserController::class,
     ]
 );
 
