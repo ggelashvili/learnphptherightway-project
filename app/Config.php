@@ -15,7 +15,7 @@ class Config
     public function __construct(array $env)
     {
         $this->config = [
-            'db'     => [
+            'db'      => [
                 'host'      => $env['DB_HOST'],
                 'username'  => $env['DB_USER'],
                 'password'  => $env['DB_PASS'],
@@ -25,8 +25,12 @@ class Config
                 'collation' => 'utf8_unicode_ci',
                 'prefix'    => '',
             ],
-            'mailer' => [
+            'mailer'  => [
                 'dsn' => $env['MAILER_DSN'] ?? '',
+            ],
+            'apiKeys' => [
+                'emailable'                     => $env['EMAILABLE_API_KEY'] ?? '',
+                'abstract_api_email_validation' => $env['ABSTRACT_API_EMAIL_VALIDATION_API_KEY'] ?? '',
             ],
         ];
     }
