@@ -51,5 +51,14 @@
                 </tr>
             </tfoot>
         </table>
+        <form action="/transactions/upload" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+            <label for="transactions-file">Upload transactions:</label>
+            <br>
+            <input name="transactions-file[]" type="file" accept="text/csv" multiple>
+            <br>
+            <br>
+            <input type="submit" value="Upload">
+        </form>
     </body>
 </html>
