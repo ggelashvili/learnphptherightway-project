@@ -7,7 +7,7 @@ namespace Tests\Unit\Services;
 use App\Services\EmailService;
 use App\Services\InvoiceService;
 use App\Services\PaymentGatewayService;
-use App\Services\SalesTaxService;
+use App\Services\Shipping\BillableWeightCalculatorService;
 use PHPUnit\Framework\TestCase;
 
 class InvoiceServiceTest extends TestCase
@@ -15,7 +15,7 @@ class InvoiceServiceTest extends TestCase
     /** @test */
     public function it_processes_invoice(): void
     {
-        $salesTaxServiceMock = $this->createMock(SalesTaxService::class);
+        $salesTaxServiceMock = $this->createMock(BillableWeightCalculatorService::class);
         $gatewayServiceMock  = $this->createMock(PaymentGatewayService::class);
         $emailServiceMock    = $this->createMock(EmailService::class);
 
@@ -42,7 +42,7 @@ class InvoiceServiceTest extends TestCase
     public function it_sends_receipt_email_when_invoice_is_processed(): void
     {
         $customer = ['name' => 'Gio'];
-        $salesTaxServiceMock = $this->createMock(SalesTaxService::class);
+        $salesTaxServiceMock = $this->createMock(BillableWeightCalculatorService::class);
         $gatewayServiceMock  = $this->createMock(PaymentGatewayService::class);
         $emailServiceMock    = $this->createMock(EmailService::class);
 
