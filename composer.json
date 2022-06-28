@@ -11,7 +11,9 @@
         "illuminate/database": "^9.8",
         "illuminate/events": "^9.8",
         "ext-curl": "*",
-        "guzzlehttp/guzzle": "^7.4"
+        "guzzlehttp/guzzle": "^7.4",
+        "twig/twig": "^3.4",
+        "twig/intl-extra": "^3.4"
     },
     "autoload": {
         "psr-4": {

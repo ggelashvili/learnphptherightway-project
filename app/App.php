@@ -13,6 +13,9 @@ use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
 use Symfony\Component\Mailer\MailerInterface;
+use Twig\Environment;
+use Twig\Extra\Intl\IntlExtension;
+use Twig\Loader\FilesystemLoader;
 
 class App
 {
@@ -44,7 +47,18 @@ class App
 
         $this->initDb($this->config->db);
 
+        $twig = new Environment(
+            new FilesystemLoader(VIEW_PATH),
+            [
+                'cache' => STORAGE_PATH . '/cache',
+                'auto_reload' => true
+            ]
+        );
+
+        $twig->addExtension(new IntlExtension());
+
         $this->container->bind(MailerInterface::class, fn() => new CustomMailer($this->config->mailer['dsn']));
+        $this->container->singleton(Environment::class, fn() => $twig);
 
         $this->container->bind(
             EmailValidationInterface::class,
