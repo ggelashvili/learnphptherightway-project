@@ -19,6 +19,9 @@ $router = new Router();
 
 $router
     ->get('/', [HomeController::class, 'index']);
+$router->get('/upload', [\App\Controllers\TransactionController::class, 'index']);
+$router->get('/transactions', [\App\Controllers\TransactionController::class, 'transactions']);
+$router->post('/processTransaction', [\App\Controllers\TransactionController::class, 'process']);
 
 (new App(
     $router,
