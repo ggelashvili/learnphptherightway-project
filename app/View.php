@@ -31,6 +31,7 @@ class View
             $$key = $value;
         }
 
+
         ob_start();
 
         include $viewPath;

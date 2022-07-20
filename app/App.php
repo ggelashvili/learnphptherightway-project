@@ -10,7 +10,7 @@ class App
 {
     private static DB $db;
 
-    public function __construct(protected Router $router, protected array $request, protected Config $config)
+    public function __construct(protected Router $router, protected Config $config)
     {
         static::$db = new DB($config->db ?? []);
     }
@@ -20,10 +20,10 @@ class App
         return static::$db;
     }
 
-    public function run()
+    public function run(array $request)
     {
         try {
-            echo $this->router->resolve($this->request['uri'], strtolower($this->request['method']));
+            echo $this->router->resolve($request['uri'], strtolower($request['method']));
         } catch (RouteNotFoundException) {
             http_response_code(404);
 
@@ -31,3 +31,5 @@ class App
         }
     }
 }
+
+//
