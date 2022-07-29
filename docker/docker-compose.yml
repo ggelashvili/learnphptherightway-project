@@ -5,6 +5,10 @@ services:
     build:
       context: ""
       dockerfile: Dockerfile
+      args:
+        USER_ID: '${WWWUSER:-1000}'
+        GROUP_ID: '${WWWGROUP:-1000}'
+        USER: '${USER:-whoami}'
     container_name: programwithgio-app
     restart: always
     working_dir: /var/www/
@@ -29,18 +33,3 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
-  mailhog:
-    container_name: programwithgio-mailhog
-    image: mailhog/mailhog
-    restart: always
-    logging:
-      driver: "none"
-    ports:
-      - "8025:8025"
-      - "1025:1025"
-  cron:
-    container_name: programwithgio-cron
-    build: ./cron
-    volumes:
-      - ../:/var/www
-      - ./log/cron:/var/log/cron

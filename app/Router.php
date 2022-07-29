@@ -16,7 +16,7 @@ class Router
     {
     }
 
-    public function registerRoutesFromControllerAttributes(array $controllers)
+    public function registerRoutesFromControllerAttributes(array $controllers): void
     {
         foreach($controllers as $controller) {
             $reflectionController = new \ReflectionClass($controller);
@@ -27,7 +27,7 @@ class Router
                 foreach($attributes as $attribute) {
                     $route = $attribute->newInstance();
 
-                    $this->register($route->method->value, $route->routePath, [$controller, $method->getName()]);
+                    $this->register($route->method, $route->routePath, [$controller, $method->getName()]);
                 }
             }
         }
