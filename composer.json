@@ -2,15 +2,15 @@
     "require": {
         "ext-pdo": "*",
         "vlucas/phpdotenv": "^5.3",
-        "psr/container": "^2.0",
-        "symfony/mailer": "^6.0",
         "doctrine/dbal": "^3.3",
         "doctrine/orm": "^2.11",
         "symfony/cache": "^5.0",
         "doctrine/migrations": "^3.4",
-        "illuminate/container": "^9.8",
         "twig/twig": "^3.4",
-        "twig/intl-extra": "^3.4"
+        "twig/intl-extra": "^3.4",
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.5",
+        "slim/twig-view": "^3.3"
     },
     "autoload": {
         "psr-4": {

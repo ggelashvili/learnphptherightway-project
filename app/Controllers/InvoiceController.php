@@ -4,20 +4,21 @@ declare(strict_types = 1);
 
 namespace App\Controllers;
 
-use App\Attributes\Get;
 use App\Services\InvoiceService;
-use Twig\Environment as Twig;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Views\Twig;
 
 class InvoiceController
 {
-    public function __construct(private Twig $twig, private InvoiceService $invoiceService)
+    public function __construct(private InvoiceService $invoiceService)
     {
     }
 
-    #[Get('/invoices')]
-    public function index(): string
+    public function index(Request $request, Response $response, $args): Response
     {
-        return $this->twig->render(
+        return Twig::fromRequest($request)->render(
+            $response,
             'invoices/index.twig',
             ['invoices' => $this->invoiceService->getPaidInvoices()]
         );
