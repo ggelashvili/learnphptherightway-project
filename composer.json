@@ -10,7 +10,8 @@
         "twig/intl-extra": "^3.4",
         "slim/slim": "4.*",
         "slim/psr7": "^1.5",
-        "slim/twig-view": "^3.3"
+        "slim/twig-view": "^3.3",
+        "php-di/php-di": "^6.4"
     },
     "autoload": {
         "psr-4": {

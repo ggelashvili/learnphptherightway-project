@@ -6,7 +6,7 @@ require 'vendor/autoload.php';
 
 use Doctrine\Migrations\Configuration\Migration\PhpFile;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\ORMSetup;
 use Doctrine\Migrations\Configuration\EntityManager\ExistingEntityManager;
 use Doctrine\Migrations\DependencyFactory;
 use Dotenv\Dotenv;
@@ -25,7 +25,7 @@ $params = [
 
 $entityManager = EntityManager::create(
     $params,
-    Setup::createAttributeMetadataConfiguration([__DIR__ . '/app/Entity'])
+    ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/../App/Entity'])
 );
 
 return DependencyFactory::fromEntityManager($config, new ExistingEntityManager($entityManager));
