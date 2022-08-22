@@ -4,14 +4,14 @@ declare(strict_types = 1);
 
 namespace App\Enums;
 
-class InvoiceStatus
+enum InvoiceStatus: int
 {
-    const Pending = 0;
-    const Paid    = 1;
-    const Void    = 2;
-    const Failed  = 3;
+    case Pending = 0;
+    case Paid    = 1;
+    case Void    = 2;
+    case Failed  = 3;
 
-    public static function toString(int $status): string
+    public static function toString(InvoiceStatus $status): string
     {
         return match ($status) {
             self::Paid   => 'Paid',
