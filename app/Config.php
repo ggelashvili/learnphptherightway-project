@@ -5,7 +5,8 @@ declare(strict_types = 1);
 namespace App;
 
 /**
- * @property-read ?array $db
+ * @property-read ?array  $db
+ * @property-read ?string $environment
  */
 class Config
 {
@@ -14,13 +15,14 @@ class Config
     public function __construct(array $env)
     {
         $this->config = [
-            'db'      => [
+            'db'          => [
                 'host'     => $env['DB_HOST'],
                 'user'     => $env['DB_USER'],
                 'password' => $env['DB_PASS'],
                 'dbname'   => $env['DB_DATABASE'],
                 'driver'   => $env['DB_DRIVER'] ?? 'pdo_mysql',
             ],
+            'environment' => $env['APP_ENVIRONMENT'] ?? 'production',
         ];
     }
 
