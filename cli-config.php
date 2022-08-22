@@ -25,7 +25,7 @@ $params = [
 
 $entityManager = EntityManager::create(
     $params,
-    ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/../App/Entity'])
+    ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/App/Entity'])
 );
 
 return DependencyFactory::fromEntityManager($config, new ExistingEntityManager($entityManager));
