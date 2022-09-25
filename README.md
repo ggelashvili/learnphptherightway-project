@@ -1,4 +1,4 @@
-#### The source code for the PHP course "Learn PHP The Right Way" lesson 3.31.
+#### Project Section Source Code Is Available Under Expennies Repository: https://github.com/ggelashvili/expennies
 
 ---
 #### Course Playlist
