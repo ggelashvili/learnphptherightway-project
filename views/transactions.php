@@ -31,23 +31,44 @@
                     <th>Check #</th>
                     <th>Description</th>
                     <th>Amount</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- TODO -->
+                <?php if ($transactions) {
+                    foreach ($transactions as $transaction) { ?>
+                        <tr>
+                            <td><?php echo $commonHelper->dateFormat($transaction['date']); ?></td>
+                            <td><?php echo $transaction['check_no']; ?></td>
+                            <td><?php echo $transaction['description']; ?></td>
+                            <td>
+                                <?php if ($transaction['amount'] >= 0) { ?>
+                                    <span style="color: green;"><?php echo $commonHelper->currency($transaction['amount']); ?></span>
+                                <?php } else { ?>
+                                    <span style="color: red;"><?php echo $commonHelper->currency($transaction['amount']); ?></span>
+                                <?php } ?>
+                            </td>
+                            <td><a href="/transaction/delete?id=<?php echo $transaction['id']; ?>">Delete</a></td>
+                        </tr>
+                    <?php }
+                    } else {
+                        echo '<tr><td colspan="4">No records found <br/>
+                        <a href="/">Add</a>
+                        </td></tr>';
+                    } ?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- TODO --></td>
+                    <td><?php echo $totals['totalIncome']; ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- TODO --></td>
+                    <td><?php echo $totals['totalExpense']; ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- TODO --></td>
+                    <td><?php echo $totals['netTotal']; ?></td>
                 </tr>
             </tfoot>
         </table>

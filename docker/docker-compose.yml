@@ -29,3 +29,14 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: programwithgio-phpmyadmin
+    depends_on:
+      - db
+    environment:
+      - PMA_HOSTS=db
+    restart: unless-stopped
+    ports:
+     - 8080:80
