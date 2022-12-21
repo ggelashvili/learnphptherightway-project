@@ -15,8 +15,13 @@ class CommonHelper
         return ($isNegative ? '-' : '').'$'.number_format(abs($amount));
     }
 
-    public function dateFormat(string $date)
+    public function dateFormat(string $date, string $inputFormat = 'm/d/Y', string $returnFormat = 'Y-m-d')
     {
-        return date('M j, Y', strtotime($date));
+        $dateObj = \DateTime::createFromFormat($inputFormat, $date);
+        if (!$dateObj) {
+            throw new \UnexpectedValueException("Could not parse the date: {$date}");
+        }
+
+        return $dateObj->format($returnFormat);
     }
 }

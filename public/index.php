@@ -24,7 +24,7 @@ $router = new Router();
 $router
     ->get('/', [HomeController::class, 'index'])
     ->post('/upload', [UploadController::class, 'upload'])
-    ->get('/scan-files', [UploadController::class, 'scanFiles'])
+    ->get('/scan-files', [ScanAllFilesController::class, 'scanFiles'])
     ->get('/transactions', [TransactionController::class, 'index'])
     ->get('/transaction/delete', [TransactionController::class, 'delete'])
 ;

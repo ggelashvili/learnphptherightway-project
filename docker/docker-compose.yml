@@ -19,8 +19,8 @@ services:
     volumes:
       - ../:/var/www
       - ./nginx:/etc/nginx/conf.d
-  db:
-    container_name: programwithgio-db
+  mysql:
+    container_name: programwithgio-mysql
     image: mysql:8.0
     volumes:
       - ./storage/mysql:/var/lib/mysql
@@ -34,9 +34,9 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: programwithgio-phpmyadmin
     depends_on:
-      - db
+      - mysql
     environment:
-      - PMA_HOSTS=db
+      - PMA_HOSTS=mysql
     restart: unless-stopped
     ports:
-     - 8080:80
+      - 8080:80

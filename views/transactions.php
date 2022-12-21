@@ -38,9 +38,9 @@
                 <?php if ($transactions) {
                     foreach ($transactions as $transaction) { ?>
                         <tr>
-                            <td><?php echo $commonHelper->dateFormat($transaction['date']); ?></td>
-                            <td><?php echo $transaction['check_no']; ?></td>
-                            <td><?php echo $transaction['description']; ?></td>
+                            <td><?php echo $commonHelper->dateFormat($transaction['date'], 'Y-m-d', 'M j, Y'); ?></td>
+                            <td><?php echo htmlspecialchars($transaction['check_no'], ENT_QUOTES); ?></td>
+                            <td><?php echo htmlspecialchars($transaction['description'], ENT_QUOTES); ?></td>
                             <td>
                                 <?php if ($transaction['amount'] >= 0) { ?>
                                     <span style="color: green;"><?php echo $commonHelper->currency($transaction['amount']); ?></span>

@@ -44,9 +44,10 @@ class TransactionModel extends Model
     public function delete(int $id): void
     {
         $stmt = $this->db->prepare(
-            'DELETE FROM '.static::$tableName.' WHERE id='.$id
+            'DELETE FROM '.static::$tableName.' WHERE id=?'
         );
-        $stmt->execute();
+
+        $stmt->execute([$id]);
     }
 
     public function calculateTotals(array $transactions): array
@@ -72,5 +73,16 @@ class TransactionModel extends Model
         }
 
         return $totals;
+    }
+
+    public function bulkCreate(?array $transactions): void
+    {
+        $transactionModel = new TransactionModel();
+
+        if ($transactions) {
+            foreach ($transactions as $transaction) {
+                $transactionModel->create($transaction);
+            }
+        }
     }
 }

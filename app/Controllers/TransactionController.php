@@ -32,6 +32,8 @@ class TransactionController
         if (!$id) {
             $_SESSION['error_msg'] = 'Delete ID not found.';
             header('location: /transactions');
+
+            exit;
         }
 
         $transactionModel = new TransactionModel();
