@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use App\Exceptions\ViewNotFoundException;
+use App\Helpers\MainHelper;
 
 class View
 {
@@ -21,6 +22,8 @@ class View
 
     public function render(): string
     {
+        $helper = new MainHelper;
+
         $viewPath = VIEW_PATH . '/' . $this->view . '.php';
 
         if (! file_exists($viewPath)) {

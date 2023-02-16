@@ -9,5 +9,6 @@
     </head>
     <body>
         Home Page
+        <p><a href="/transactions">Show transactions</a></p>
     </body>
 </html>
