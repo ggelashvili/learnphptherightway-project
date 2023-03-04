@@ -34,20 +34,33 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- TODO -->
+                <?php if(!empty($transactions)): ?>
+                    <?php foreach($transactions as $transaction): ?>
+                        <tr>
+                            <td><?= formatDate($transaction['trans_date']) ?></td>
+                            <td><?= $transaction['check_no'] ?></td>
+                            <td><?= $transaction['description'] ?></td>
+                            <?php if($transaction['amount'] > 0): ?>
+                                <td style="color:green"><?= formatDollarAmount($transaction['amount']); ?></td>
+                            <?php else: ?>
+                                <td style="color:red"><?= formatDollarAmount($transaction['amount']); ?></td>
+                            <?php endif; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= formatDollarAmount($totals['totalIncome']) ?? 0 ; ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= formatDollarAmount($totals['totalExpense']) ?? 0 ; ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= formatDollarAmount($totals['netTotal']) ?? 0 ; ?></td>
                 </tr>
             </tfoot>
         </table>

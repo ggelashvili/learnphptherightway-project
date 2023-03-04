@@ -6,7 +6,10 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files":[
+            "app/Helpers/helper.php"
+        ]
     },
     "config": {
         "optimize-autoloader": true

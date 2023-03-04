@@ -8,6 +8,12 @@
         <title>Document</title>
     </head>
     <body>
-        Home Page
+        <h1>Home Page</h1>
+        <div>
+            <form method="post" action="/transactions/create" enctype="multipart/form-data">
+                <input type="file" name="transactions"><br><br>
+                <input type="submit" name="submit" value="upload">
+            </form>
+        </div>
     </body>
 </html>
