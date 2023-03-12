@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#executable_name="php"
+
+### Including pre.sh script
+pre_script_directory="$(dirname "$0")"
+source $pre_script_directory/pre.sh

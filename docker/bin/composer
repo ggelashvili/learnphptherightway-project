@@ -1,0 +1,7 @@
+#!/bin/bash
+
+executable_path="composer"
+
+### Including/Sourcing pre.sh script
+pre_script_directory="$(dirname "$0")"
+. $pre_script_directory/pre.sh

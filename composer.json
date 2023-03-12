@@ -1,14 +1,20 @@
 {
-    "require": {
-        "ext-pdo": "*",
-        "vlucas/phpdotenv": "^5.3"
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/"
         }
     },
+    "scripts": {
+        "detect-cs-violations": "vendor/bin/phpcs --ignore=*/vendor/* --standard=PSR12 .",
+        "fix-cs-violations": "vendor/bin/phpcbf --ignore=*/vendor/* --standard=PSR12 ."
+    },
     "config": {
         "optimize-autoloader": true
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
     }
 }

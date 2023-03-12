@@ -1,0 +1,1 @@
+1. The PHP CS extension throws an error "Unable to locate phpcs. Invalid version string encountered!" if anything prints before the PHP_CodeSniffer version. Make sure you comment all the echo statement in pre.sh and phpcs file.

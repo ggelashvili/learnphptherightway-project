@@ -1,11 +1,16 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App;
 
+use PDO;
+use App\DB;
 use App\Exceptions\RouteNotFoundException;
 
+/**
+ * @mixin PDO
+ */
 class App
 {
     private static DB $db;
@@ -26,7 +31,6 @@ class App
             echo $this->router->resolve($this->request['uri'], strtolower($this->request['method']));
         } catch (RouteNotFoundException) {
             http_response_code(404);
-
             echo View::make('error/404');
         }
     }

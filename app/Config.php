@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App;
 
 /**
- * @property-read ?array $db
+ * @proper
  */
 class Config
 {
@@ -15,12 +15,12 @@ class Config
     {
         $this->config = [
             'db' => [
-                'host'     => $env['DB_HOST'],
-                'user'     => $env['DB_USER'],
-                'pass'     => $env['DB_PASS'],
-                'database' => $env['DB_DATABASE'],
-                'driver'   => $env['DB_DRIVER'] ?? 'mysql',
-            ],
+                'host' => $env['DB_HOST'],
+                'user' => $env['DB_USER'],
+                'pass' => $env['DB_PASS'],
+                'name' => $env['DB_NAME'],
+                'driver' => $env['DB_DRIVER'] ?? 'mysql'
+            ]
         ];
     }
 

@@ -1,31 +1,46 @@
-version: '3.8'
+version: '3.9'
 
 services:
   app:
+    container_name: oops-project-app
     build:
-      context: ""
+      context: ./
       dockerfile: Dockerfile
-    container_name: programwithgio-app
-    restart: always
-    working_dir: /var/www/
+    working_dir: /var/www/php-oops-project
     volumes:
-      - ../:/var/www
+      - ../:/var/www/php-oops-project
+
   nginx:
+    container_name: oops-project-nginx
     image: nginx:1.19-alpine
-    container_name: programwithgio-nginx
-    restart: always
     ports:
-      - 8000:80
+      - "10000:80"
     volumes:
-      - ../:/var/www
+      - ..:/var/www/php-oops-project
       - ./nginx:/etc/nginx/conf.d
+
   db:
-    container_name: programwithgio-db
+    container_name: oops-project-db
     image: mysql:8.0
-    volumes:
-      - ./storage/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+        MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - oops-project-db-data:/var/lib/mysql
+
+  phpmyadmin:
+    container_name: oops-project-phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    depends_on:
+      - db
+    environment:
+        PMA_HOST: oops-project-db
+        PMA_USER: root
+        PMA_PASSWORD: root
     ports:
-      - 3306:3306
+      - 10001:80
+
+volumes:
+  oops-project-db-data:
