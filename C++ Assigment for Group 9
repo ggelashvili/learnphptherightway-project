@@ -1,0 +1,82 @@
+// Linked List Program - insert your list items 
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int value;
+    Node* next;
+};
+
+class LinkedList {
+public:
+    LinkedList() {
+        head = NULL;
+    }
+    
+    void addFront(int val) {
+        Node* newNode = new Node;
+        newNode->value = val;
+        newNode->next = head;
+        head = newNode;
+    }
+    
+    void removeFront() {
+        if (head == NULL) {
+            return;
+        }
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+    
+    void printList() {
+        Node* current = head;
+        while (current != NULL) {
+            cout << current->value << " ";
+            current = current->next;
+        }
+        cout << endl;
+    }
+    
+    bool contains(int val) {
+        Node* current = head;
+        while (current != NULL) {
+            if (current->value == val) {
+                return true;
+            }
+            current = current->next;
+        }
+        return false;
+    }
+    
+private:
+    Node* head;
+};
+
+int main() {
+    LinkedList myList;
+    int input;
+    
+    cout << "Enter values to add to the list, or -1 to stop:" << endl;
+    while (true) {
+        cin >> input;
+        if (input == -1) {
+            break;
+        }
+        myList.addFront(input);
+    }
+    
+    cout << "Enter a value to check if it is in the list:" << endl;
+    cin >> input;
+    if (myList.contains(input)) {
+        cout << "The list contains the value " << input << endl;
+    } else {
+        cout << "The list does not contain the value " << input << endl;
+    }
+    
+    myList.removeFront();
+    myList.printList();
+    
+    return 0;
+}
