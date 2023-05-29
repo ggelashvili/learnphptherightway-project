@@ -12,7 +12,7 @@
         <p style="color: green"><?= $this->message ?> </p>
         <?php endif; ?>
         <form action="/upload" method="post" enctype="multipart/form-data">
-            <input name="transactions" type="file" />
+            <input name="transactions[]" type="file" multiple />
             <button type="submit">Upload files</button>
         </form>
     </body>

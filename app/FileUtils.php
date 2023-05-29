@@ -8,11 +8,11 @@ use App\Exceptions\FileUploadFailedException;
 
 class FileUtils
 {
-    public static function store(array $file): ?string
+    public static function store(string $fileName, string $tmp_name): ?string
     {
-        $filePath = STORAGE_PATH . '/' . $file['name'];
+        $filePath = STORAGE_PATH . '/' . $fileName;
 
-        if (move_uploaded_file($file['tmp_name'], $filePath) === false) {
+        if (move_uploaded_file($tmp_name, $filePath) === false) {
             throw new FileUploadFailedException();
         }
 

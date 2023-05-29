@@ -27,19 +27,25 @@ class FileUploadController
     public function store(): View
     {
         $message = '';
-
-        $filePath = FileUtils::store($_FILES['transactions']);
-
-        $file = new CsvReader($filePath);
         $transactionCount = 0;
+        $uploadedFiles = $_FILES['transactions'];
 
-        while ($row = $file->parseTransactionRow()) {
-            $this->transaction->create(...$row);
-            $transactionCount++;
+        $uploadedFilesCount = count($uploadedFiles['name']);
+
+        for ($i = 0; $i < $uploadedFilesCount; $i++) {
+
+            $filePath = FileUtils::store($uploadedFiles['name'][$i], $uploadedFiles['tmp_name'][$i]);
+
+            $file = new CsvReader($filePath);
+
+            while ($row = $file->parseTransactionRow()) {
+                $this->transaction->create(...$row);
+                $transactionCount++;
+            }
         }
 
-        if ($transactionCount > 0)
-            $message = "$transactionCount transactions have been successfully uploaded.";
+        if ($transactionCount > 0 && $uploadedFilesCount > 0)
+            $message = "$transactionCount transaction(s) from $uploadedFilesCount file(s), have been successfully uploaded.";
 
         return View::make('upload', ['message' => $message]);
     }
