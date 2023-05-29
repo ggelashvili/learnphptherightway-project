@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 use App\App;
 use App\Config;
-use App\Controllers\HomeController;
 use App\Router;
+use App\Controllers\HomeController;
+use App\Controllers\FileUploadController;
+use App\Controllers\TransactionsController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -18,7 +20,10 @@ define('VIEW_PATH', __DIR__ . '/../views');
 $router = new Router();
 
 $router
-    ->get('/', [HomeController::class, 'index']);
+    ->get('/', [HomeController::class, 'index'])
+    ->get('/upload', [FileUploadController::class, 'index'])
+    ->post('/upload', [FileUploadController::class, 'store'])
+    ->get('/transactions', [TransactionsController::class, 'index']);
 
 (new App(
     $router,
