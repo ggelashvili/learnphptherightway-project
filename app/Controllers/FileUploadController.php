@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\View;
 use App\CsvReader;
+use App\Exceptions\FileUploadFailedException;
 use App\FileUtils;
 use App\Models\Transaction;
 
@@ -26,15 +27,20 @@ class FileUploadController
 
     public function store(): View
     {
+
         $message = '';
         $transactionCount = 0;
         $uploadedFiles = $_FILES['transactions'];
 
-        $uploadedFilesCount = count($uploadedFiles['name']);
+        $uploadedFilesCount = is_array($uploadedFiles['name']) ? count($uploadedFiles['name']) : 1;
 
         for ($i = 0; $i < $uploadedFilesCount; $i++) {
 
-            $filePath = FileUtils::store($uploadedFiles['name'][$i], $uploadedFiles['tmp_name'][$i]);
+            try {
+                $filePath = FileUtils::store($uploadedFiles['name'][$i], $uploadedFiles['tmp_name'][$i]);
+            } catch (FileUploadFailedException) {
+                return View::make('upload', ['message' => "File upload failed or no files were uploaded",'msgColor' => 'red']);
+            }
 
             $file = new CsvReader($filePath);
 
@@ -47,6 +53,6 @@ class FileUploadController
         if ($transactionCount > 0 && $uploadedFilesCount > 0)
             $message = "$transactionCount transaction(s) from $uploadedFilesCount file(s), have been successfully uploaded.";
 
-        return View::make('upload', ['message' => $message]);
+        return View::make('upload', ['message' => $message, 'msgColor' => 'green']);
     }
 }

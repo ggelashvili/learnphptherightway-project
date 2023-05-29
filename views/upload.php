@@ -9,7 +9,7 @@
     </head>
     <body>
         <?php if($this->message): ?>
-        <p style="color: green"><?= $this->message ?> </p>
+        <p style="color: <?= $this->msgColor ?>;"><?= $this->message ?> </p>
         <?php endif; ?>
         <form action="/upload" method="post" enctype="multipart/form-data">
             <input name="transactions[]" type="file" multiple />
