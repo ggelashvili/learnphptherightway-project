@@ -21,7 +21,7 @@ $router = new Router();
 $router
     ->get('/', [HomeController::class, 'index'])
     ->get('/upload', [TransactionController::class, 'upload'])
-    ->post('/upload', [TransactionController::class, 'upload'])
+    ->post('/upload', [TransactionController::class, 'loadCsv'])
     ->get('/show', [TransactionController::class, 'show']);
 
 (new App(
