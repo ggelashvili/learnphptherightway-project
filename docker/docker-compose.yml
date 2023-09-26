@@ -9,7 +9,7 @@ services:
     restart: always
     working_dir: /var/www/
     volumes:
-      - ../src:/var/www
+      - ../:/var/www
   nginx:
     image: nginx:1.19-alpine
     container_name: learning-php-nginx
@@ -17,5 +17,16 @@ services:
     ports:
       - 8000:80
     volumes:
-      - ../src:/var/www
+      - ../:/var/www
       - ./nginx:/etc/nginx/conf.d
+
+  db:
+    container_name: learning-php-db
+    image: mysql:8.0
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
