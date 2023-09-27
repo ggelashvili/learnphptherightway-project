@@ -3,23 +3,27 @@
 declare(strict_types=1);
 
 namespace app\PaymentGateway\Paddle;
-use App\Enums\Status;
 
 class Transaction
 {
-    private string $status;
-    public function __construct()
+    private static int $count = 0;
+
+    public function __construct(public float $amount, public string $description)
     {
-        $this->setStatus(Status::PENDING);
+        self::$count++;
     }
 
-    public function setStatus($status): self
+    public static function getCount(): int
     {
-        if (!isset(Status::ALL_STATUSES[$status])) {
-            throw new \InvalidArgumentException('Status not exists');
-        }
-        $this->status = $status;
+        return self::$count;
+    }
 
-        return $this;
+    public function process()
+    {
+        array_map(function () {
+            var_dump($this->amount);
+        }, [1]);
+
+        echo 'Processing paddle transaction...';
     }
 }
