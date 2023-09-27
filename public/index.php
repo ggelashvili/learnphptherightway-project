@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Enums\Status;
+use App\PaymentGateway\Paddle\Transaction;
+
 require  __DIR__ . '/../vendor/autoload.php';
 
-use App\PaymentGateway\Paddle\Transaction;
-use App\PaymentGateway\Stripe\Transaction as StripeTransaction;
+$transaction = new Transaction();
 
-$paddleTransaction = new Transaction();
-$stripeTransaction = new StripeTransaction();
-
-$id = new \Ramsey\Uuid\UuidFactory();
-
-echo $id->uuid4();
-
-var_dump($paddleTransaction, $stripeTransaction);
+//var_dump(Transaction::STATUS_PAID, $transaction::STATUS_PENDING);
+$transaction->setStatus(Status::PAID);
+var_dump($transaction);
