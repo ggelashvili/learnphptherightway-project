@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
-use App\PaymentGateway\DB;
 use App\PaymentGateway\Paddle\Transaction;
 
-require  __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-$transaction = new Transaction(25, 'Transaction 1');
+$transaction = new Transaction(25);
 
-var_dump($transaction::getCount(), Transaction::getCount());
+// Trick how you can change property value in the object even-though property is set to private
+//$reflectionProperty = new ReflectionProperty(Transaction::class, 'amount');
+//$reflectionProperty->setAccessible(True);
+//$reflectionProperty->setValue($transaction, 125);
+//var_dump($reflectionProperty->getValue($transaction));
+//$transaction->amount;
 
-$db = DB::getInstance([]);
-var_dump($transaction::getCount(), $transaction->getCount());
-var_dump($transaction->process());
+//$transaction->process();
+
+$transaction->copyFrom(new Transaction(125));
