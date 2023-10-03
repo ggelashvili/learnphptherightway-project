@@ -2,30 +2,27 @@
 
 declare(strict_types=1);
 
+use App\ClassA;
+use App\MyClass;
+use App\MyTrait;
+
 require __DIR__ . '/../vendor/autoload.php';
 
-//$invoice = new \App\Invoice(15);
+//$obj = new class(1, 2 ,3) extends MyClass implements \App\MyInterface {
+//    use MyTrait;
+//    public function __construct(public int $x, public int $y, public int $z)
+//    {
+//        parent::__construct();
+//    }
+//};
+//function foo(\App\MyInterface $obj)
+//{
+//    return $obj;
+//}
 //
-//$invoice->amount = 35;
 //
-//var_dump(isset($invoice->amount));
-//var_dump($invoice);
-//unset($invoice->amount);
-//
-//var_dump($invoice);
+//var_dump(foo($obj));
+//var_dump(get_class($obj));
 
-//$invoice = new \App\Invoice();
-//\App\Invoice::process(1, 2, 3);
-//$invoice->process(1, 2, 3);
-//$invoice->process(15, 'Some description');
-
-//$invoice = new \App\Invoice();
-//var_dump($invoice instanceof Stringable);
-
-
-//$invoice = new \App\Invoice();
-//var_dump(is_callable($invoice));
-//$invoice();
-
-$invoice = new \App\Invoice();
-var_dump($invoice);
+$obj = new ClassA(1, 2);
+var_dump($obj->bar());
