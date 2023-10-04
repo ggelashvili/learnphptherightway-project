@@ -2,27 +2,38 @@
 
 declare(strict_types=1);
 
-use App\ClassA;
-use App\MyClass;
-use App\MyTrait;
+use App\CustomInvoice;
+use App\Invoice;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-//$obj = new class(1, 2 ,3) extends MyClass implements \App\MyInterface {
-//    use MyTrait;
-//    public function __construct(public int $x, public int $y, public int $z)
-//    {
-//        parent::__construct();
-//    }
-//};
-//function foo(\App\MyInterface $obj)
-//{
-//    return $obj;
-//}
-//
-//
-//var_dump(foo($obj));
-//var_dump(get_class($obj));
 
-$obj = new ClassA(1, 2);
-var_dump($obj->bar());
+$invoice1 = new Invoice(25, 'My Invoice');
+//$invoice2 = new Invoice(100, 'My Invoice 2');
+$invoice2 = new CustomInvoice(25, 'My Invoice');
+
+$invoice3 = clone $invoice1;
+
+//echo 'invoice1 == invoice2' . PHP_EOL;
+//var_dump($invoice1 == $invoice2);
+//echo '<br>';
+//echo 'invoice1 === invoice2' . PHP_EOL;
+//var_dump($invoice1 === $invoice2);
+//
+//echo '<br>';
+//
+//echo 'invoice1 == invoice3' . PHP_EOL;
+//var_dump($invoice1 == $invoice3);
+//echo '<br>';
+//echo 'invoice1 === invoice3' . PHP_EOL;
+//var_dump($invoice1 === $invoice3);
+//echo '<br>';
+//$invoice3->amount = 15561;
+//var_dump($invoice1, $invoice3);
+
+
+echo 'invoice1 == invoice2' . PHP_EOL;
+var_dump($invoice1 == $invoice2);
+echo '<br>';
+echo 'invoice1 === invoice2' . PHP_EOL;
+var_dump($invoice1 === $invoice2);
