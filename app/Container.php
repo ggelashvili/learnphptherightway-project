@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 
 class Container implements ContainerInterface
 {
-    private array $entries = [];
+    protected array $entries = [];
 
     public function get(string $id)
     {

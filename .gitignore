@@ -1,3 +1,4 @@
 .idea
 .env
 vendor
+.phpunit.result.cache
