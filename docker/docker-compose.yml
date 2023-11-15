@@ -5,22 +5,22 @@ services:
     build:
       context: ""
       dockerfile: Dockerfile
-    container_name: programwithgio-app
+    container_name: pwg-app
     restart: always
     working_dir: /var/www/
     volumes:
       - ../:/var/www
   nginx:
     image: nginx:1.19-alpine
-    container_name: programwithgio-nginx
+    container_name: pwg-nginx
     restart: always
     ports:
-      - 8000:80
+      - 8008:80
     volumes:
       - ../:/var/www
       - ./nginx:/etc/nginx/conf.d
   db:
-    container_name: programwithgio-db
+    container_name: pwg-db
     image: mysql:8.0
     volumes:
       - ./storage/mysql:/var/lib/mysql
@@ -28,4 +28,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3306:3306
+      - 3308:3306
