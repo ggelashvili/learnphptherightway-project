@@ -34,22 +34,44 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- TODO -->
+
+            <?php if (!empty($transactions)): ?>
+
+            <?php foreach ($transactions as $transaction): ?>
+                <tr>
+                    <th scope="row"><?= \App\Models\Transaction::parseDate($transaction['date']) ?></th>
+                    <td><?= $transaction['check_num'] ?></td>
+                    <td><?= $transaction['description'] ?></td>
+
+                    <?php if ($transaction['amount'] < 0): ?>
+                        <td style="color: red"><?= \App\Models\Transaction::parseAmount($transaction['amount']) ?></td>
+                    <?php else: ?>
+                        <td style="color: green"><?= \App\Models\Transaction::parseAmount($transaction['amount']) ?></td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= $totals['expenses'] ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= $totals['incomes'] ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= $totals['net'] ?></td>
                 </tr>
             </tfoot>
+
+            <?php else: ?>
+                <p style="text-align: center">
+                    Not transactions found,
+                    <a href="/transactions/create">Try upload some first !</a>
+                </p>
+            <?php endif; ?>
         </table>
     </body>
 </html>
