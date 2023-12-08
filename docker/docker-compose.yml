@@ -21,11 +21,14 @@ services:
       - ./nginx:/etc/nginx/conf.d
   db:
     container_name: programwithgio-db
-    image: mysql:8.0
-    volumes:
-      - ./storage/mysql:/var/lib/mysql
+    image: mysql:8.0    
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
     ports:
       - 3306:3306
+    volumes:
+      - mysql_programwithgio-db:/var/lib/mysql
+volumes:
+  mysql_programwithgio-db:
