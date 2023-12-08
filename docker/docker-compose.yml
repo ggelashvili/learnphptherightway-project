@@ -21,7 +21,7 @@ services:
       - ./nginx:/etc/nginx/conf.d
   db:
     container_name: programwithgio-db
-    image: mysql:8.0    
+    image: mysql:8.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -30,5 +30,6 @@ services:
       - 3306:3306
     volumes:
       - mysql_programwithgio-db:/var/lib/mysql
+      - ./script.sql:/docker-entrypoint-initdb.d/script.sql
 volumes:
   mysql_programwithgio-db:
