@@ -10,12 +10,13 @@ use DateTime;
 class Transaction extends Model
 {
     protected int $id;
-    protected DateTime $date;
-    protected string $check;
-    protected string $description;
-    protected float $amount;
+    public DateTime $date;
+    public string $check;
+    public string $description;
+    public float $amount;
 
-    public function all(): array
+
+    public function all(): TransactionCollection
     {
         $query = 'select id, date, check_number, description, amount from transactions';
 
@@ -24,25 +25,17 @@ class Transaction extends Model
         $transactions = [];
 
         while (($row = $statement->fetch()) !== false) {
-            $transaction = Transaction::create(
-                DateTime::createFromFormat('Y-m-d', $row['date']),
-                $row['check_number'] ?? '',
-                $row['description'] ?? '',
-                (float)$row['amount']
-            );
-
-            $transaction->setId($row['id']);
-
-            $transactions[] = $transaction;
+            $transactions[] = $this->createFromRow($row);
         }
 
-        return $transactions;
+        return new TransactionCollection($transactions);
     }
+
+
 
     public static function create(DateTime $date, string $check, string $description, float $amount): static
     {
         $transaction = new static();
-
         $transaction->date = $date;
         $transaction->check = $check;
         $transaction->description = $description;
@@ -50,9 +43,17 @@ class Transaction extends Model
 
         return $transaction;
     }
-
-    protected function setId(int $id)
+    public function createFromRow(array $row): static
     {
-        $this->id = $id;
+        $id = (int) $row['id'];
+        $date = DateTime::createFromFormat('Y-m-d', $row['date']);
+        $check = (string) $row['check_number'];
+        $description = (string) $row['description'];
+        $amount = (float) $row['amount'];
+
+        $transaction = Transaction::create($date, $check, $description, $amount);
+        $transaction->id = $id;
+
+        return $transaction;
     }
 }

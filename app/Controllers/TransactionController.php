@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Models\ProcessTransaction;
 use App\Models\Transaction;
 use App\View;
 
 class TransactionController
 {
-    public function index(): View
+    public function index()
     {
-        return View::make('transactions', [
-            'transactions' => (new Transaction())->all(),
-        ]);
+        $transactions = (new Transaction())->all();
+        $processTransaction = new ProcessTransaction($transactions);
+        $processTransaction->process();
+
+        return View::make('transactions', ['processedTransaction' => $processTransaction]);
     }
 
     public function prepareUpload()

@@ -34,20 +34,29 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- TODO -->
+            <?foreach ($processedTransaction->getTransactions() as $transaction):?>
+                   <tr>
+                    <td><?= $transaction->date->format('M j,Y')?></td>
+                    <td><?= $transaction->check?></td>
+                    <td><?= $transaction->description?></td>
+                    <td style="color: <?=  $transaction->amount > 0 ? 'green' : 'red' ?>;" >
+                        <?= formatMoney($transaction->amount)?>
+                    </td>
+                   </tr> 
+                <?endforeach?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= formatMoney($processedTransaction->getTotalIncome()) ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= formatMoney($processedTransaction->getTotalExpense()) ?></td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- TODO --></td>
+                    <td><?= formatMoney($processedTransaction->getNetTotal()) ?></td>
                 </tr>
             </tfoot>
         </table>

@@ -9,6 +9,7 @@ use App\Controllers\TransactionController;
 use App\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/Helpers.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
