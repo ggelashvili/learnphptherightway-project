@@ -8,6 +8,11 @@
         <title>Document</title>
     </head>
     <body>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="trans_csv">File upload here</label>
+            <input type="file" name="trans_csv" id="trans_csv">
+            <button type="submit">upload</button>
+        </form>
         Home Page
     </body>
 </html>

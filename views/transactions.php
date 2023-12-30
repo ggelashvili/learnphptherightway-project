@@ -35,6 +35,20 @@
             </thead>
             <tbody>
                 <!-- TODO -->
+                <?php foreach ($transactions as $td) : ?>
+                <tr>
+                    <?php foreach ($td as $t => $v) : ?>
+                        <td style=<?php if ($t == 'amount' && $v[0] == '-') {
+                                        echo '"color:red;"';
+                                    } elseif($t== 'amount') echo 'color:green' ?>>
+                            <?php print_r($v); ?>
+                        </td>
+                    <?php endforeach ?>
+                </tr>
+
+                <?php echo "</tr>"  ?>
+
+            <?php endforeach ?>
             </tbody>
             <tfoot>
                 <tr>

@@ -10,5 +10,8 @@
     },
     "config": {
         "optimize-autoloader": true
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
     }
 }

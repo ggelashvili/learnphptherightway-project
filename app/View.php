@@ -29,6 +29,7 @@ class View
 
         foreach($this->params as $key => $value) {
             $$key = $value;
+            echo $key .' '. $value .'';
         }
 
         ob_start();
