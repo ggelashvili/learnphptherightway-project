@@ -2,4 +2,13 @@
 
 declare(strict_types = 1);
 
-// Your Code
+function getCsv($path): array
+{
+    $array = [];
+    $file = fopen($path, "r");
+    while (!feof($file)) {
+        $array[] = fgetcsv($file);
+    }
+    fclose($file);
+    return $array;
+}
