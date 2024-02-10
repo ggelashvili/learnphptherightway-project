@@ -8,8 +8,20 @@
         <title>Document</title>
     </head>
     <body>
-        Home Page
 
-        <!-- TODO: Add upload file form -->
+    <h1>Home Page</h1>
+
+    <div>
+        <form action="/transactions" method="post"
+              enctype="multipart/form-data">
+            <label>
+                Upload CSV-file:
+                <input type="file" name="file" accept="text/csv">
+            </label>
+            <input type="submit" value="Send">
+
+        </form>
+
+    </div>
     </body>
 </html>
