@@ -15,7 +15,7 @@ services:
     container_name: programwithgio-nginx
     restart: always
     ports:
-      - 8000:80
+      - "8000:80"
     volumes:
       - ../:/var/www
       - ./nginx:/etc/nginx/conf.d
@@ -28,4 +28,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3306:3306
+      - "3306:3306"

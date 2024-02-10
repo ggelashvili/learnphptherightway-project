@@ -9,5 +9,7 @@
     </head>
     <body>
         Home Page
+
+        <!-- TODO: Add upload file form -->
     </body>
 </html>

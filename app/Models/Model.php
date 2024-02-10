@@ -1,8 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
-namespace App;
+namespace App\Models;
+
+use App\App;
+use App\DB;
 
 abstract class Model
 {

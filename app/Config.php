@@ -16,11 +16,11 @@ class Config
         $this->config = [
             'db' => [
                 'host'     => $env['DB_HOST'],
-                'user'     => $env['DB_USER'],
-                'pass'     => $env['DB_PASS'],
-                'database' => $env['DB_DATABASE'],
+                'username' => $env['DB_USERNAME'],
+                'password' => $env['DB_USER_PASSWORD'],
+                'name'     => $env['DB_NAME'],
                 'driver'   => $env['DB_DRIVER'] ?? 'mysql',
-            ],
+            ]
         ];
     }
 
