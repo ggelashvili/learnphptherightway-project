@@ -37,7 +37,9 @@
     <?php
 
     $formatter    = new \App\Ui\UsdCurrencyFormatter();
-    $transactions = (new \App\Ui\TransactionFormatter())->format($transactions);
+    $transactions = (new \App\Ui\TransactionFormatter())->format(
+        $transactions ?? ''
+    );
     foreach ($transactions as $transaction): ?>
         <tr>
             <td><?= $transaction['date'] ?></td>
@@ -52,15 +54,15 @@
     <tfoot>
     <tr>
         <th colspan="3">Total Income:</th>
-        <td><?= $formatter->format($totalIncome) ?></td>
+        <td><?= $formatter->format($totalIncome ?? 0) ?></td>
     </tr>
     <tr>
         <th colspan="3">Total Expense:</th>
-        <td><?= $formatter->format($totalExpense) ?></td>
+        <td><?= $formatter->format($totalExpense ?? 0) ?></td>
     </tr>
     <tr>
         <th colspan="3">Net Total:</th>
-        <td><?= $formatter->format($netTotal) ?></td>
+        <td><?= $formatter->format($netTotal ?? 0) ?></td>
     </tr>
     </tfoot>
 </table>

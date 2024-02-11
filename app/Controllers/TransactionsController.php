@@ -34,6 +34,11 @@ class TransactionsController
         );
     }
 
+    public function uploadForm(): View
+    {
+        return View::make('upload_transaction');
+    }
+
 
     /**
      * @throws InvalidTransactionFileException
