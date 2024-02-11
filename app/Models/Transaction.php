@@ -15,10 +15,10 @@ class Transaction extends Model
     public function createFromDTO(TransactionDTO $transactionDTO): int
     {
         return $this->create(
-            $transactionDTO->date,
-            $transactionDTO->checkNumber,
-            $transactionDTO->description,
-            $transactionDTO->amount
+            date: $transactionDTO->date,
+            description: $transactionDTO->description,
+            amount: $transactionDTO->amount,
+            checkNumber: $transactionDTO->checkNumber
         );
     }
 
@@ -40,7 +40,7 @@ class Transaction extends Model
             );
 
             $insertNewTransactionStatement->execute([
-                ':date'         => $date,
+                ':date' => $date->format('Y-m-d'),
                 ':check_number' => $checkNumber,
                 ':description'  => $description,
                 ':amount'       => $amount,

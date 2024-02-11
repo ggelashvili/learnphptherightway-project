@@ -47,9 +47,9 @@ class Router
             [$class, $method] = $action;
 
             if (class_exists($class)
-                && method_exists(new $class(), $method)
+                && method_exists($obj = new $class(), $method)
             ) {
-                return call_user_func([$class, $method]);
+                return call_user_func([$obj, $method]);
             }
         }
 

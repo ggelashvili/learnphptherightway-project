@@ -35,6 +35,7 @@ class TransactionsController
         );
 
         $transactionModel = new Transaction();
+        /** @param $transaction TransactionDTO */
         foreach ($transactions as $transaction) {
             $transactionModel->createFromDTO($transaction);
         }
