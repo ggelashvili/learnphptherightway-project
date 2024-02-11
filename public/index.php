@@ -30,7 +30,9 @@ $router = new Router();
 
 $router
     ->get('/', [HomeController::class, 'index'])
-    ->get('/transactions', [TransactionsController::class, 'index']);
+    ->get('/transactions', [TransactionsController::class, 'index'])
+    ->post('/transactions', [TransactionsController::class, 'uploadTransaction']
+    );
 
 (new App(
     $router,

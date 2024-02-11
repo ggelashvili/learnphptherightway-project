@@ -16,7 +16,7 @@
               enctype="multipart/form-data">
             <label>
                 Upload CSV-file:
-                <input type="file" name="file" accept="text/csv">
+                <input type="file" name="transaction" accept="text/csv">
             </label>
             <input type="submit" value="Send">
 
