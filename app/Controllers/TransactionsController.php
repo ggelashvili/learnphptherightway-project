@@ -13,7 +13,25 @@ class TransactionsController
 {
     public function index(): View
     {
-        return View::make('transactions', (new Transaction())->findAll());
+        $transactionModel = new Transaction();
+
+        $transactions = $transactionModel->findAll();
+        $totalIncome  = $transactionModel->calculateTotalIncome();
+        $totalExpense = $transactionModel->calculateTotalExpense();
+        $netTotal     = $transactionModel->calculateNetTotal(
+            $totalIncome,
+            $totalExpense
+        );
+
+        return View::make(
+            'transactions',
+            [
+                'transactions' => $transactions,
+                'totalIncome'  => $totalIncome,
+                'totalExpense' => $totalExpense,
+                'netTotal'     => $netTotal,
+            ]
+        );
     }
 
 
@@ -35,12 +53,9 @@ class TransactionsController
         );
 
         $transactionModel = new Transaction();
-        /** @param $transaction TransactionDTO */
-        foreach ($transactions as $transaction) {
-            $transactionModel->createFromDTO($transaction);
-        }
+        $transactionModel->createFromDTOs($transactions);
 
-        header('Location: /');
+        header('Location: /transactions');
     }
 
     /**
@@ -87,7 +102,7 @@ class TransactionsController
         }
 
         return new TransactionDTO(
-            DateTimeImmutable::createFromFormat('m/d/Y', $date)->setTime(0, 0),
+            DateTimeImmutable::createFromFormat('d/m/Y', $date),
             $checkNumber,
             $description,
             $amount

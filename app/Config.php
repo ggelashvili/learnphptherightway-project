@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App;
 
@@ -20,7 +20,7 @@ class Config
                 'password' => $env['DB_USER_PASSWORD'],
                 'name'     => $env['DB_NAME'],
                 'driver'   => $env['DB_DRIVER'] ?? 'mysql',
-            ]
+            ],
         ];
     }
 
