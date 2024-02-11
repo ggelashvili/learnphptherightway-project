@@ -19,6 +19,7 @@ class View
         return new static($view, $params);
     }
 
+
     /**
      * @throws ViewNotFoundException
      */
