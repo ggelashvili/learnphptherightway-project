@@ -20,7 +20,7 @@ class App
         return static::$db;
     }
 
-    public function run()
+    public function run(): void
     {
         try {
             echo $this->router->resolve($this->request['uri'], strtolower($this->request['method']));
