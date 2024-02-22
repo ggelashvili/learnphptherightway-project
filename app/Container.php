@@ -6,24 +6,31 @@ namespace App;
 
 use App\Exceptions\Container\ContainerException;
 use App\Exceptions\Container\NotFoundException;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
+use ReflectionException;
 
 class Container implements ContainerInterface
 {
     private array $entries = [];
 
+    /**
+     * @throws ReflectionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function get(string $id)
     {
+
         if ($this->has($id)) {
             $entry = $this->entries[$id];
 
             if (is_callable($entry)) {
                 return $entry($this);
             }
-
             $id = $entry;
         }
-
         return $this->resolve($id);
     }
 
@@ -37,12 +44,17 @@ class Container implements ContainerInterface
         $this->entries[$id] = $concrete;
     }
 
+    /**
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws ReflectionException
+     */
     public function resolve(string $id)
     {
         // 1. Inspect the class that we are trying to get from the container
         try {
             $reflectionClass = new \ReflectionClass($id);
-        } catch(\ReflectionException $e) {
+        } catch (ReflectionException $e) {
             throw new NotFoundException($e->getMessage(), $e->getCode(), $e);
         }
 
@@ -53,15 +65,16 @@ class Container implements ContainerInterface
         // 2. Inspect the constructor of the class
         $constructor = $reflectionClass->getConstructor();
 
+
         if (! $constructor) {
-            return new $id;
+            return new $id();
         }
 
         // 3. Inspect the constructor parameters (dependencies)
         $parameters = $constructor->getParameters();
 
         if (! $parameters) {
-            return new $id;
+            return new $id();
         }
 
         // 4. If the constructor parameter is a class then try to resolve that class using the container
@@ -92,7 +105,6 @@ class Container implements ContainerInterface
             },
             $parameters
         );
-
         return $reflectionClass->newInstanceArgs($dependencies);
     }
 }

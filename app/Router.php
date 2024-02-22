@@ -48,7 +48,6 @@ class Router
         if (is_callable($action)) {
             return call_user_func($action);
         }
-
         [$class, $method] = $action;
 
         if (class_exists($class)) {
