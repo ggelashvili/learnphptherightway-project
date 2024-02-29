@@ -44,17 +44,17 @@ echo PHP_EOL;
 $doggy = (new DogShelter())->adopt('Archie'); // Returns Dog (extends Animal)
 $doggy->makeSound();
 echo PHP_EOL;
-
+$catFood = new AnimalFood();
 // Contravariance
-$kitty->eat(new AnimalFood());
+$kitty->eat($catFood);
 echo PHP_EOL;
 
 // Dog class can accept either
 // Food class instances
 // and Food child classes instances
-
-$doggy->eat(new Food());
+$banana = new Food();
+$doggy->eat($banana);
 echo PHP_EOL;
-$doggy->eat(new AnimalFood());
+$doggy->eat($catFood); // LSP is observed (widening type support)
 echo PHP_EOL;
 
