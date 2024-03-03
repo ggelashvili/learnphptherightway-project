@@ -4,10 +4,12 @@ declare(strict_types = 1);
 
 namespace App\Controllers;
 
+use App\Attributes\Controller;
 use App\Attributes\Route;
 use App\Models\Ticket;
 use Generator;
 
+#[Controller]
 class GeneratorExampleController
 {
     public function __construct(private Ticket $ticketModel)
