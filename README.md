@@ -1,6 +1,6 @@
-#### The source code for the PHP course "Learn PHP The Right Way" lesson 3.11.
+#### The example source code for the PHP course "Learn PHP The Right Way" lesson 3.12.
 
-https://youtu.be/5Cgio2OfOYk
+It has a router which can automatically register routes from classes in specified PHP namespace
 
 ---
 #### Course Playlist
