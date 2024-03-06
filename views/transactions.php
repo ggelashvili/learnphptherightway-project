@@ -1,3 +1,8 @@
+<?php
+include_once ('../public/index.php');
+$csvArray = readCsv();
+unset($csvArray[0]);
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,21 +38,42 @@
                     <th>Amount</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- YOUR CODE -->
-            </tbody>
+            <thead>
+            <?php
+                printDates($csvArray);
+                ?>
+            </thead>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- YOUR CODE --></td>
+                    <td>
+                        <p>
+                            <?php
+                            $total = calculateTotalIncome($csvArray);
+                            $totalIncome = $total[0];
+                            $totalExpense = $total[1];
+                            echo "$" . $totalIncome;
+                            ?>
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- YOUR CODE --></td>
+                    <td>
+                        <?php
+                        echo "-" . "$" . $totalExpense;
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- YOUR CODE --></td>
+                    <td>
+                        <?php
+                        $totalNet = $totalIncome - $totalExpense;
+                        echo "$" . $totalNet;
+                        ?>
+
+                    </td>
                 </tr>
             </tfoot>
         </table>
