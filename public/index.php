@@ -1,11 +1,13 @@
 <?php
-
-declare(strict_types = 1);
+declare(strict_types=1);
+require_once ('../app/App.php');
+require_once ('../views/transactions.php');
+global $totalIncome;
+global $totalExpense;
+global $totalNet;
 
 $root = dirname(__DIR__) . DIRECTORY_SEPARATOR;
 
-define('APP_PATH', $root . 'app' . DIRECTORY_SEPARATOR);
-define('FILES_PATH', $root . 'transaction_files' . DIRECTORY_SEPARATOR);
-define('VIEWS_PATH', $root . 'views' . DIRECTORY_SEPARATOR);
-
-/* YOUR CODE (Instructions in README.md) */
+define('app/App.php', $root . 'app' . DIRECTORY_SEPARATOR);
+define('transaction_files/sample_1.csv', $root . 'transaction_files' . DIRECTORY_SEPARATOR);
+define('views/transactions.php', $root . 'views' . DIRECTORY_SEPARATOR);
