@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Entity;
+namespace App\Entities;
 
 use App\Enums\InvoiceStatus;
 use Doctrine\Common\Collections\ArrayCollection;
