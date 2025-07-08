@@ -21,7 +21,7 @@ class Container implements ContainerInterface
                 return $entry($this);
             }
 
-            $id = $entry;
+            return $this->get($entry);
         }
 
         return $this->resolve($id);
