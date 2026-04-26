@@ -24,6 +24,9 @@
         </style>
     </head>
     <body>
+    <form action="/import" method="post">
+        <button>IMPORT</button>
+    </form>
         <table>
             <thead>
                 <tr>
@@ -34,21 +37,32 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- TODO -->
+                <?php if(!empty($transactions)): ?>
+                    <?php foreach ($transactions as $transaction): ?>
+                    <tr>
+                        <td><?= $transaction['date'] ?></td>
+                        <td><?= $transaction['description'] ?></td>
+                        <td><?= $transaction['checkNumber'] ?></td>
+                        <td><?= $transaction['amount'] ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
             <tfoot>
-                <tr>
-                    <th colspan="3">Total Income:</th>
-                    <td><!-- TODO --></td>
-                </tr>
-                <tr>
-                    <th colspan="3">Total Expense:</th>
-                    <td><!-- TODO --></td>
-                </tr>
-                <tr>
-                    <th colspan="3">Net Total:</th>
-                    <td><!-- TODO --></td>
-                </tr>
+                <?php if(!empty($totals)): ?>
+                    <tr>
+                        <th colspan="3">Total Income:</th>
+                        <td><?= $totals['totalIncome'] ?? 0 ?></td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Total Expense:</th>
+                        <td><?= $totals['totalExpense'] ?? 0 ?></td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Net Total:</th>
+                        <td><?= $totals['netTotal'] ?? 0 ?></td>
+                    </tr>
+                <?php endif; ?>
             </tfoot>
         </table>
     </body>
